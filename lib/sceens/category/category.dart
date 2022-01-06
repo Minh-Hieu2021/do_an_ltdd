@@ -14,6 +14,7 @@ class _CategorySceenState extends State<CategorySceen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kBackgroundColor,
       body: SafeArea(
         child: ListView(
           children: <Widget>[
