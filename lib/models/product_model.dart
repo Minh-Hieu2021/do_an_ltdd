@@ -42,9 +42,21 @@ final List<Product> products = [
     price: 15000000,
   ),
   Product(
-    id: 6,
+    id: 3,
     image: "assets/images/sp1.png",
-    title: "GIGABYTE G5",
-    price: 20000000,
+    title: "Gaming HP VICTUS 16",
+    price: 30000000,
+  ),
+  Product(
+    id: 4,
+    image: "assets/images/sp1.png",
+    title: "Gaming MSI Katana",
+    price: 40000000,
+  ),
+  Product(
+    id: 5,
+    image: "assets/images/sp1.png",
+    title: "Gaming Asus ROG Strix",
+    price: 15000000,
   ),
 ];

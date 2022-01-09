@@ -26,7 +26,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
         boxShadow: [
           BoxShadow(
             offset: const Offset(0, -10), // khoảng cách
-            blurRadius: 35, //độ mờ
+            blurRadius: 10, //độ mờ
             color: kPrimaryColor.withOpacity(0.38),
           ),
         ],
@@ -48,12 +48,12 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
             onPressed: () {},
           ),
           IconButton(
-            icon: const Icon(Icons.shopping_cart),
+            icon: const Icon(Icons.notifications),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const CartSceen()),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => const CartSceen()),
+              // );
             },
           ),
           IconButton(

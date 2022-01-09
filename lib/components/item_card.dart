@@ -10,9 +10,33 @@ class ItemCard extends StatelessWidget {
     required this.product,
     this.press,
   }) : super(key: key);
+  String daoChuoi(String chuoi) {
+    String kq = "";
+    for (int i = chuoi.length; i > 0; i--) {
+      kq += chuoi.substring(i, i);
+    }
+    return kq;
+  }
+
+  String catchuoi(int c) {
+    String chuoi = c.toString();
+    String kq = "";
+    for (int i = chuoi.length; i > 0; i = i - 3) {
+      if (i <= 3) {
+        return kq + chuoi.substring(0, i);
+      }
+      if (i == chuoi.length) {
+        kq += chuoi.substring(i - 3, chuoi.length);
+      }
+      kq += chuoi.substring(i, chuoi.length) + ',';
+    }
+    return kq;
+  }
 
   @override
   Widget build(BuildContext context) {
+    String gianguoc = catchuoi(product.price);
+    String gia = daoChuoi(gianguoc);
     return GestureDetector(
       onTap: press,
       child: Column(
@@ -20,10 +44,10 @@ class ItemCard extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: Container(
-              padding: const EdgeInsets.all(kDefaultPadding),
+              padding: const EdgeInsets.all(40),
               decoration: BoxDecoration(
-                color: Colors.white, //product.color,
-                borderRadius: BorderRadius.circular(16),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5),
               ),
               child: Hero(
                 tag: "${product.id}",
@@ -36,14 +60,17 @@ class ItemCard extends StatelessWidget {
             child: Text(
               product.title,
               style: const TextStyle(
-                color: kTextColor,
+                color: Colors.white,
               ),
             ),
           ),
           Text(
-            "\$${product.price}",
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          )
+            gia + 'VND',
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.red,
+            ),
+          ),
         ],
       ),
     );
