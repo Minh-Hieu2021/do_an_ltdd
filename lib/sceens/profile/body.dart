@@ -7,8 +7,8 @@ import 'package:do_an_ltdd/models/product_model.dart';
 import 'package:do_an_ltdd/models/img_model.dart';
 import 'package:do_an_ltdd/components/search.dart';
 
-class BodyCategory extends StatelessWidget {
-  const BodyCategory({Key? key}) : super(key: key);
+class BodyProflie extends StatelessWidget {
+  const BodyProflie({Key? key}) : super(key: key);
   double demSoHang() {
     double dem = 0;
     for (int i = 0; i <= products.length; i++) {
@@ -125,30 +125,6 @@ class BodyCategory extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-          Container(
-            height: size.height * demSoHang(),
-            child: GridView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: products.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.7,
-                ),
-                itemBuilder: (context, index) => Container(
-                      margin: const EdgeInsets.all(10),
-                      child: ItemCard(
-                        product: products[index],
-                        press: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //       builder: (context) =>
-                          //           DetailsScreen(product: products[index]),
-                          //     ));
-                        },
-                      ),
-                    )),
           ),
         ],
       ),

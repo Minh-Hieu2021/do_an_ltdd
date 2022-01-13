@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -8,12 +10,14 @@ import 'package:do_an_ltdd/models/img_model.dart';
 import 'package:do_an_ltdd/components/search.dart';
 import 'package:do_an_ltdd/sceens/cart/cart.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:http/http.dart' as http;
 
-class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+class BodyHome extends StatelessWidget {
+  const BodyHome({Key? key, required this.productss}) : super(key: key);
+  final List<Product> productss;
   double demSoHang() {
     double dem = 0;
-    for (int i = 0; i <= products.length; i++) {
+    for (int i = 0; i <= productss.length; i++) {
       if (i % 2 != 0) {
         dem += 0.44;
       }
@@ -28,13 +32,13 @@ class Body extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              SizedBox(
+              const SizedBox(
                 width: 40,
               ),
               SizedBox(
@@ -74,7 +78,7 @@ class Body extends StatelessWidget {
               },
               autoplay: true,
               itemCount: 3,
-              viewportFraction: 0.8, // 1 là bằng 1 row
+              viewportFraction: 0.8,
               scale: 0.9,
             ),
           ),
@@ -92,7 +96,7 @@ class Body extends StatelessWidget {
             height: size.height * demSoHang(),
             child: GridView.builder(
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: products.length,
+                itemCount: productss.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 0.7,
@@ -100,7 +104,7 @@ class Body extends StatelessWidget {
                 itemBuilder: (context, index) => Container(
                       margin: const EdgeInsets.all(10),
                       child: ItemCard(
-                        product: products[index],
+                        product: productss[index],
                         press: () {
                           // Navigator.push(
                           //     context,

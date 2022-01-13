@@ -1,6 +1,6 @@
 import 'package:do_an_ltdd/sceens/category/body.dart';
 import 'package:flutter/material.dart';
-import 'package:do_an_ltdd/components/bottom_nabar.dart';
+// import 'package:do_an_ltdd/components/bottom_nabar.dart';
 import 'package:do_an_ltdd/components/recomend_plant_card.dart';
 import '../../../constanst.dart';
 import '../../components/search.dart';
@@ -14,10 +14,9 @@ class CategorySceen extends StatefulWidget {
 class _CategorySceenState extends State<CategorySceen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: kBackgroundColor,
-      body: Body(),
-      bottomNavigationBar: const MyBottomNavBar(),
+      body: BodyCategory(),
     );
   }
 }

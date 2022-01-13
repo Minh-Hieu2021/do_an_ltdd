@@ -1,10 +1,13 @@
 // ignore_for_file: unused_local_variable, sized_box_for_whitespace
 
-import 'package:do_an_ltdd/components/bottom_nabar.dart';
+// import 'package:do_an_ltdd/components/bottom_nabar.dart';
 import 'package:do_an_ltdd/sceens/home/components/body.dart';
-
+import 'package:do_an_ltdd/sceens/category/body.dart';
+import 'package:do_an_ltdd/sceens/profile/body.dart';
 import 'package:flutter/material.dart';
 import 'package:do_an_ltdd/constanst.dart';
+import 'package:do_an_ltdd/network/network_request.dart';
+import 'package:do_an_ltdd/models/product_model.dart';
 
 class HomeSceen extends StatefulWidget {
   const HomeSceen({Key? key}) : super(key: key);
@@ -13,21 +16,19 @@ class HomeSceen extends StatefulWidget {
 }
 
 class _HomeSceenState extends State<HomeSceen> {
-  _Title(String title) {
-    return Container(
-      //color: Colors.red,
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(5),
-            child: Text(
-              title,
-              style: const TextStyle(fontSize: 20, color: Colors.white),
-            ),
-          ),
-        ],
-      ),
-    );
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static List<Widget> _pages = <Widget>[
+    BodyHome(productss: products),
+    BodyCategory(),
+    BodyProflie(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
@@ -43,10 +44,30 @@ class _HomeSceenState extends State<HomeSceen> {
           currentFocus.unfocus();
         }
       },
-      child: const Scaffold(
+      child: Scaffold(
         backgroundColor: kBackgroundColor,
-        body: Body(),
-        bottomNavigationBar: MyBottomNavBar(),
+        body: _pages.elementAt(_selectedIndex),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.red,
+          onTap: (index) {
+            _onItemTapped(index);
+          },
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.message),
+              label: 'Message',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.account_box),
+              label: 'Profile',
+            ),
+          ],
+        ),
       ),
     );
   }

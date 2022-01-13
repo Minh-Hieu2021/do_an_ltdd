@@ -13,7 +13,7 @@ class ItemCard extends StatelessWidget {
   String daoChuoi(String chuoi) {
     String kq = "";
     for (int i = chuoi.length; i > 0; i--) {
-      kq += chuoi.substring(i, i);
+      kq += chuoi.substring(i - 1, i);
     }
     return kq;
   }
@@ -23,7 +23,7 @@ class ItemCard extends StatelessWidget {
     String kq = "";
     for (int i = chuoi.length; i > 0; i = i - 3) {
       if (i <= 3) {
-        return kq + chuoi.substring(0, i);
+        return kq + daoChuoi(chuoi.substring(0, i));
       }
       if (i == chuoi.length) {
         kq += chuoi.substring(i - 3, chuoi.length);
@@ -65,7 +65,7 @@ class ItemCard extends StatelessWidget {
             ),
           ),
           Text(
-            gia + 'VND',
+            gia + ' VND',
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.red,
