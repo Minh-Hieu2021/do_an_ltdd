@@ -3,9 +3,9 @@ class Account {
   final int idsp;
   bool status;
   Account({
-    required this.id,
-    required this.idsp,
-    required this.status,
+    this.id,
+    this.idsp,
+    this.status,
   });
 }
 

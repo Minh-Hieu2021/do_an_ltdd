@@ -1,22 +1,40 @@
+import 'package:do_an_ltdd/models/product_api.dart';
+import 'package:do_an_ltdd/network/network_request.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:do_an_ltdd/components/item_card.dart';
 import 'package:do_an_ltdd/constanst.dart';
-import 'package:do_an_ltdd/models/product_model.dart';
-import 'package:do_an_ltdd/models/img_model.dart';
 import 'package:do_an_ltdd/components/search.dart';
 
-class BodyCategory extends StatelessWidget {
-  const BodyCategory({Key? key}) : super(key: key);
+class BodyCategory extends StatefulWidget {
+  const BodyCategory({Key key}) : super(key: key);
+
+  @override
+  State<BodyCategory> createState() => _BodyCategoryState();
+}
+
+class _BodyCategoryState extends State<BodyCategory> {
   double demSoHang() {
-    double dem = 0;
-    for (int i = 0; i <= products.length; i++) {
+    double result = 0;
+    for (int i = 1; i <= productss.length; i++) {
       if (i % 2 != 0) {
-        dem += 0.44;
+        result += 310;
       }
     }
-    return dem;
+    return result;
+  }
+
+  List<Products> productss = [];
+
+  @override
+  void initState() {
+    super.initState();
+    NetworkRequest.fetchProduct().then((data) {
+      setState(() {
+        productss = data;
+      });
+    });
   }
 
   @override
@@ -127,10 +145,10 @@ class BodyCategory extends StatelessWidget {
             ),
           ),
           Container(
-            height: size.height * demSoHang(),
+            height: demSoHang(),
             child: GridView.builder(
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: products.length,
+                itemCount: productss.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 0.7,
@@ -138,7 +156,7 @@ class BodyCategory extends StatelessWidget {
                 itemBuilder: (context, index) => Container(
                       margin: const EdgeInsets.all(10),
                       child: ItemCard(
-                        product: products[index],
+                        product: productss[index],
                         press: () {
                           // Navigator.push(
                           //     context,

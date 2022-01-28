@@ -4,7 +4,7 @@ import 'package:do_an_ltdd/constanst.dart';
 import '../../../constanst.dart';
 
 class CartCounter extends StatefulWidget {
-  const CartCounter({Key? key}) : super(key: key);
+  const CartCounter({Key key}) : super(key: key);
 
   @override
   _CartCounterState createState() => _CartCounterState();
@@ -32,7 +32,7 @@ class _CartCounterState extends State<CartCounter> {
             itemCounter.toString().padLeft(2, "0"),
             style: Theme.of(context)
                 .textTheme
-                .headline6!
+                .headline6
                 .copyWith(fontWeight: FontWeight.bold),
           ),
         ),
@@ -48,7 +48,7 @@ class _CartCounterState extends State<CartCounter> {
     );
   }
 
-  SizedBox buildOulineButton({Function()? press, IconData? icon}) {
+  SizedBox buildOulineButton({Function() press, IconData icon}) {
     return SizedBox(
       height: 40,
       width: 32,

@@ -1,13 +1,13 @@
+import 'package:do_an_ltdd/models/product_api.dart';
 import 'package:flutter/material.dart';
 import 'package:do_an_ltdd/constanst.dart';
-import 'package:do_an_ltdd/models/product_model.dart';
 
 class ItemCard extends StatelessWidget {
-  final Product product;
-  final Function()? press;
+  final Products product;
+  final Function() press;
   const ItemCard({
-    Key? key,
-    required this.product,
+    Key key,
+    this.product,
     this.press,
   }) : super(key: key);
   String daoChuoi(String chuoi) {

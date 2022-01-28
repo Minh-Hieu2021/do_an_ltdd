@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class Search extends StatelessWidget {
-  const Search({Key? key}) : super(key: key);
+  const Search({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +14,12 @@ class Search extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
-        boxShadow: const [
-          BoxShadow(
-            offset: Offset(0, 1000), // khoảng cách
-            blurRadius: 50, // độ mờ
-          ),
-        ],
+        // boxShadow: const [
+        //   BoxShadow(
+        //     offset: Offset(0, 1000), // khoảng cách
+        //     blurRadius: 0.1, // độ mờ
+        //   ),
+        // ],
       ),
       child: Row(
         children: [

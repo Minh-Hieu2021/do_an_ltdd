@@ -8,7 +8,7 @@ import 'package:do_an_ltdd/models/img_model.dart';
 import 'package:do_an_ltdd/components/search.dart';
 
 class BodyProflie extends StatelessWidget {
-  const BodyProflie({Key? key}) : super(key: key);
+  const BodyProflie({Key key}) : super(key: key);
   double demSoHang() {
     double dem = 0;
     for (int i = 0; i <= products.length; i++) {

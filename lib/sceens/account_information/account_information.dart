@@ -9,24 +9,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 // ignore: camel_case_types
-class Account_InformationScreen extends StatelessWidget{
-  const Account_InformationScreen({Key? key}) : super(key: key);
+class Account_InformationScreen extends StatelessWidget {
+  const Account_InformationScreen({Key key}) : super(key: key);
 
-  @override 
-  Widget build(BuildContext context){
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: const Color(0xFF273c75),
           elevation: 0,
           leading: IconButton(
-            icon: SvgPicture.asset('assets/icons/back.svg',color: Colors.white),
+            icon:
+                SvgPicture.asset('assets/icons/back.svg', color: Colors.white),
             onPressed: () {},
           ),
           title: const Text(
-            "Thông tin tài khoản", 
+            "Thông tin tài khoản",
             style: TextStyle(
-              color: Colors.white, fontSize: 30,
+              color: Colors.white,
+              fontSize: 30,
             ),
           ),
         ),
@@ -34,10 +36,10 @@ class Account_InformationScreen extends StatelessWidget{
           padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
           constraints: const BoxConstraints.expand(),
           color: const Color(0xFF273c75),
-          child: ListView( 
+          child: ListView(
             children: <Widget>[
               const Padding(
-                padding: EdgeInsets.fromLTRB(0, 50, 0, 20), 
+                padding: EdgeInsets.fromLTRB(0, 50, 0, 20),
                 child: Text(
                   "Tên",
                   style: TextStyle(
@@ -46,7 +48,6 @@ class Account_InformationScreen extends StatelessWidget{
                   ),
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.all(0),
                 child: SizedBox(
@@ -55,7 +56,10 @@ class Account_InformationScreen extends StatelessWidget{
                   // ignore: deprecated_member_use
                   child: RaisedButton(
                     color: Colors.white,
-                    onPressed: () => Navigator.push(context ,MaterialPageRoute(builder: (context) => const update_NameScreen())),
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const update_NameScreen())),
                     child: const Text(
                       "Phạm Đăng Quang ->",
                       style: TextStyle(color: Colors.grey, fontSize: 15),
@@ -63,10 +67,8 @@ class Account_InformationScreen extends StatelessWidget{
                   ),
                 ),
               ),
-
-
               const Padding(
-                padding: EdgeInsets.fromLTRB(0, 50, 0, 20), 
+                padding: EdgeInsets.fromLTRB(0, 50, 0, 20),
                 child: Text(
                   "Mật khẩu",
                   style: TextStyle(
@@ -75,7 +77,6 @@ class Account_InformationScreen extends StatelessWidget{
                   ),
                 ),
               ),
-              
               Padding(
                 padding: const EdgeInsets.all(0),
                 child: SizedBox(
@@ -84,7 +85,10 @@ class Account_InformationScreen extends StatelessWidget{
                   // ignore: deprecated_member_use
                   child: RaisedButton(
                     color: Colors.white,
-                    onPressed: () => Navigator.push(context ,MaterialPageRoute(builder: (context) => const update_PassScreen())),
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const update_PassScreen())),
                     child: const Text(
                       "******** ->",
                       style: TextStyle(color: Colors.grey, fontSize: 15),
@@ -92,9 +96,8 @@ class Account_InformationScreen extends StatelessWidget{
                   ),
                 ),
               ),
-
               const Padding(
-                padding: EdgeInsets.fromLTRB(0, 50, 0, 20), 
+                padding: EdgeInsets.fromLTRB(0, 50, 0, 20),
                 child: Text(
                   "Số điện thoại",
                   style: TextStyle(
@@ -103,7 +106,6 @@ class Account_InformationScreen extends StatelessWidget{
                   ),
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.all(0),
                 child: SizedBox(
@@ -112,7 +114,10 @@ class Account_InformationScreen extends StatelessWidget{
                   // ignore: deprecated_member_use
                   child: RaisedButton(
                     color: Colors.white,
-                    onPressed: () => Navigator.push(context ,MaterialPageRoute(builder: (context) => const update_PhoneScreen())),
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const update_PhoneScreen())),
                     child: const Text(
                       "0388158661 ->",
                       style: TextStyle(color: Colors.grey, fontSize: 15),
@@ -120,9 +125,8 @@ class Account_InformationScreen extends StatelessWidget{
                   ),
                 ),
               ),
-
               const Padding(
-                padding: EdgeInsets.fromLTRB(0, 50, 0, 20), 
+                padding: EdgeInsets.fromLTRB(0, 50, 0, 20),
                 child: Text(
                   "E-mail",
                   style: TextStyle(
@@ -131,7 +135,6 @@ class Account_InformationScreen extends StatelessWidget{
                   ),
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.all(0),
                 child: SizedBox(
@@ -140,7 +143,10 @@ class Account_InformationScreen extends StatelessWidget{
                   // ignore: deprecated_member_use
                   child: RaisedButton(
                     color: Colors.white,
-                    onPressed: () => Navigator.push(context ,MaterialPageRoute(builder: (context) => const update_EmailScreen())),
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const update_EmailScreen())),
                     child: const Text(
                       "0306191352@caothang.... ->",
                       style: TextStyle(color: Colors.grey, fontSize: 15),
@@ -148,9 +154,8 @@ class Account_InformationScreen extends StatelessWidget{
                   ),
                 ),
               ),
-
               const Padding(
-                padding: EdgeInsets.fromLTRB(0, 50, 0, 20), 
+                padding: EdgeInsets.fromLTRB(0, 50, 0, 20),
                 child: Text(
                   "Giới tính",
                   style: TextStyle(
@@ -159,7 +164,6 @@ class Account_InformationScreen extends StatelessWidget{
                   ),
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.all(0),
                 child: SizedBox(
@@ -168,7 +172,10 @@ class Account_InformationScreen extends StatelessWidget{
                   // ignore: deprecated_member_use
                   child: RaisedButton(
                     color: Colors.white,
-                    onPressed: () => Navigator.push(context ,MaterialPageRoute(builder: (context) => const update_SexScreen())),
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const update_SexScreen())),
                     child: const Text(
                       "Nam ->",
                       style: TextStyle(color: Colors.grey, fontSize: 15),
@@ -176,10 +183,8 @@ class Account_InformationScreen extends StatelessWidget{
                   ),
                 ),
               ),
-
-
               const Padding(
-                padding: EdgeInsets.fromLTRB(0, 50, 0, 20), 
+                padding: EdgeInsets.fromLTRB(0, 50, 0, 20),
                 child: Text(
                   "Ngày sinh",
                   style: TextStyle(
@@ -188,7 +193,6 @@ class Account_InformationScreen extends StatelessWidget{
                   ),
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.all(0),
                 child: SizedBox(
@@ -197,7 +201,11 @@ class Account_InformationScreen extends StatelessWidget{
                   // ignore: deprecated_member_use
                   child: RaisedButton(
                     color: Colors.white,
-                    onPressed: () => Navigator.push(context ,MaterialPageRoute(builder: (context) => const update_BirthdayScreen())),
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const update_BirthdayScreen())),
                     child: const Text(
                       "29/08/2001 ->",
                       style: TextStyle(color: Colors.grey, fontSize: 15),
@@ -205,9 +213,8 @@ class Account_InformationScreen extends StatelessWidget{
                   ),
                 ),
               ),
-
               const Padding(
-                padding: EdgeInsets.fromLTRB(0, 50, 0, 20), 
+                padding: EdgeInsets.fromLTRB(0, 50, 0, 20),
                 child: Text(
                   "Tài khoản ngân hàng",
                   style: TextStyle(
@@ -216,7 +223,6 @@ class Account_InformationScreen extends StatelessWidget{
                   ),
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.all(0),
                 child: SizedBox(
@@ -225,7 +231,11 @@ class Account_InformationScreen extends StatelessWidget{
                   // ignore: deprecated_member_use
                   child: RaisedButton(
                     color: Colors.white,
-                    onPressed: () => Navigator.push(context ,MaterialPageRoute(builder: (context) => const update_BankaccountScreen())),
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const update_BankaccountScreen())),
                     child: const Text(
                       "->",
                       style: TextStyle(color: Colors.grey, fontSize: 15),
@@ -233,7 +243,6 @@ class Account_InformationScreen extends StatelessWidget{
                   ),
                 ),
               ),
-
             ],
           ),
         ),

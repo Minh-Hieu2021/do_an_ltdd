@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class Categoryhome extends StatelessWidget {
-  Categoryhome({Key? key}) : super(key: key);
+  Categoryhome({Key key}) : super(key: key);
   List<String> tabControl = [
     'Asus',
     'Acer',

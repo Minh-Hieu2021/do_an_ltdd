@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../constanst.dart';
 
 class MyBottomNavBar extends StatefulWidget {
-  const MyBottomNavBar({Key? key}) : super(key: key);
+  const MyBottomNavBar({Key key}) : super(key: key);
 
   @override
   _MyBottomNavBarState createState() => _MyBottomNavBarState();

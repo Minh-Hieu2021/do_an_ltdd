@@ -1,38 +1,77 @@
+import 'package:do_an_ltdd/network/network_request.dart';
 import 'package:flutter/material.dart';
-import 'package:do_an_ltdd/models/product_model.dart';
-import 'package:do_an_ltdd/models/cart_model.dart';
-
+import 'package:do_an_ltdd/models/cart_api.dart';
 import '../../constanst.dart';
-// import 'components/item_counter.dart';
-//import 'package:hqd_app/components/RecomendPlantCard.dart';
 
 class XacnhandonhangSceen extends StatefulWidget {
-  const XacnhandonhangSceen({Key? key}) : super(key: key);
+  const XacnhandonhangSceen({Key key}) : super(key: key);
   @override
   State<XacnhandonhangSceen> createState() => _XacnhandonhangSceenState();
 }
 
 class _XacnhandonhangSceenState extends State<XacnhandonhangSceen> {
-  bool? isChecked;
+  bool isChecked;
   int tongtien = 0;
   int soLuongSPMua = 0;
   String group = "phuongthucthanhtoan";
-  int soLuongSanPhamMua() {
-    int result = 0;
-    for (int i = 0; i < carts.length; i++) {
-      if (carts[i].status) {
-        result++;
-      }
-    }
-    return result;
+  List<Cart> carts = [];
+
+  @override
+  void initState() {
+    super.initState();
+    NetworkRequest.fetchCart().then((data) {
+      setState(() {
+        carts = data;
+      });
+    });
   }
 
   int tongTien() {
     int result = 0;
     for (int i = 0; i < carts.length; i++) {
       if (carts[i].status) {
-        result += products[carts[i].idsp].price * carts[i].sl;
+        result += carts[i].price * carts[i].quantity;
       }
+    }
+    return result;
+  }
+
+  bool kiemTraNamNhuan(var n) {
+    return (((n % 4 == 0) && (n % 100 != 0)) || (n % 400 == 0));
+  }
+
+  int soNgayCuaThang(var thang, var nam) {
+    switch (thang) {
+      case 1:
+      case 3:
+      case 5:
+      case 7:
+      case 8:
+      case 10:
+      case 12:
+        return 31;
+      case 2:
+        return kiemTraNamNhuan(nam) ? 29 : 28;
+      default:
+        return 30;
+    }
+  }
+
+  String ngaynhanhang() {
+    String result = "";
+    DateTime date = DateTime.now();
+    var songaycuathang = soNgayCuaThang(date.month, date.year);
+    if (date.day + 10 > songaycuathang) {
+      var songayconlaitrongthang = songaycuathang - date.day;
+      result = (10 - songayconlaitrongthang).toString() +
+          ' Tháng ' +
+          (date.month + 1).toString() +
+          ' - ' +
+          (15 - songayconlaitrongthang).toString() +
+          ' Tháng ' +
+          (date.month + 1).toString();
+    } else {
+      result = (date.day + 10).toString() + 'Tháng ' + date.month.toString();
     }
     return result;
   }
@@ -62,8 +101,8 @@ class _XacnhandonhangSceenState extends State<XacnhandonhangSceen> {
 
   @override
   Widget build(BuildContext context) {
-    soLuongSPMua = soLuongSanPhamMua();
     tongtien = tongTien();
+    var ngnhanhang = ngaynhanhang();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kBackgroundColor,
@@ -112,8 +151,8 @@ class _XacnhandonhangSceenState extends State<XacnhandonhangSceen> {
                   ],
                 ),
                 Row(
-                  children: const [
-                    Text("Nhận hàng vào ngày 18 Th 11 - 27 Th 11"),
+                  children: [
+                    Text('Nhận hàng vào $ngnhanhang'),
                   ],
                 ),
               ],
@@ -144,9 +183,9 @@ class _XacnhandonhangSceenState extends State<XacnhandonhangSceen> {
               child: Radio<String>(
                 value: 'nhanhang',
                 groupValue: group,
-                onChanged: (String? value) {
+                onChanged: (String value) {
                   setState(() {
-                    group = value!;
+                    group = value;
                   });
                 },
               ),
@@ -159,9 +198,9 @@ class _XacnhandonhangSceenState extends State<XacnhandonhangSceen> {
               child: Radio<String>(
                 value: 'tructuyen',
                 groupValue: group,
-                onChanged: (String? value) {
+                onChanged: (String value) {
                   setState(() {
-                    group = value!;
+                    group = value;
                   });
                 },
               ),
@@ -231,9 +270,9 @@ class _XacnhandonhangSceenState extends State<XacnhandonhangSceen> {
         IconButton(
           icon: const Icon(Icons.remove),
           onPressed: () {
-            if (carts[index].sl > 1) {
+            if (carts[index].quantity > 1) {
               setState(() {
-                carts[index].sl--;
+                carts[index].quantity--;
               });
             }
           },
@@ -241,10 +280,10 @@ class _XacnhandonhangSceenState extends State<XacnhandonhangSceen> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding / 2),
           child: Text(
-            carts[index].sl.toString().padLeft(2, "0"),
+            carts[index].quantity.toString().padLeft(2, "0"),
             style: Theme.of(context)
                 .textTheme
-                .headline6!
+                .headline6
                 .copyWith(fontWeight: FontWeight.bold),
           ),
         ),
@@ -252,7 +291,7 @@ class _XacnhandonhangSceenState extends State<XacnhandonhangSceen> {
           icon: const Icon(Icons.add),
           onPressed: () {
             setState(() {
-              carts[index].sl++;
+              carts[index].quantity++;
             });
           },
         ),

@@ -3,11 +3,11 @@ import 'package:do_an_ltdd/constanst.dart';
 
 class RecomendPlantCard extends StatelessWidget {
   const RecomendPlantCard({
-    Key? key,
-    required this.image,
-    required this.title,
-    required this.price,
-    required this.press,
+    Key key,
+    this.image,
+    this.title,
+    this.price,
+    this.press,
   }) : super(key: key);
 
   final String image, title;

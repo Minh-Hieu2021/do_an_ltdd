@@ -1,7 +1,7 @@
 class Img {
   final String imageUrl;
   Img({
-    required this.imageUrl,
+    this.imageUrl,
   });
 }
 

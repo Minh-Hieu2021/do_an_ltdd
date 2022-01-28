@@ -1,31 +1,46 @@
+import 'package:do_an_ltdd/network/network_request.dart';
 import 'package:flutter/material.dart';
-// import 'package:hqd_app/sceens/cart/components/botom_nabar.dart';
-import 'package:do_an_ltdd/models/product_model.dart';
-import 'package:do_an_ltdd/models/cart_model.dart';
+// import 'package:do_an_ltdd/models/product_api.dart';
+import 'package:do_an_ltdd/models/cart_api.dart';
 import 'package:do_an_ltdd/sceens/xacnhandonhang/xacnhandonhang.dart';
-
 import '../../constanst.dart';
-// import 'components/item_counter.dart';
-//import 'package:hqd_app/components/RecomendPlantCard.dart';
 
 class CartSceen extends StatefulWidget {
-  const CartSceen({Key? key}) : super(key: key);
+  const CartSceen({Key key}) : super(key: key);
   @override
   State<CartSceen> createState() => _CartSceenState();
 }
 
 class _CartSceenState extends State<CartSceen> {
-  bool? isChecked;
+  bool isChecked;
   int tongtien = 0;
   int soLuongSPMua = 0;
+  List<Cart> carts = [];
+
+  @override
+  void initState() {
+    super.initState();
+    NetworkRequest.fetchCart().then((data) {
+      setState(() {
+        carts = data;
+      });
+    });
+  }
+
   checkAll(bool ischeck) {
     if (ischeck) {
       for (int i = 0; i < carts.length; i++) {
+        if (carts[i].status == false) {
+          NetworkRequest.changeStatus(carts[i].id);
+        }
         carts[i].status = ischeck;
-        tongtien += products[carts[i].idsp].price * carts[i].sl;
+        tongtien += carts[i].price * carts[i].quantity;
       }
     } else {
       for (int i = 0; i < carts.length; i++) {
+        if (carts[i].status == true) {
+          NetworkRequest.changeStatus(carts[i].id);
+        }
         carts[i].status = ischeck;
         tongtien = 0;
       }
@@ -46,7 +61,7 @@ class _CartSceenState extends State<CartSceen> {
     int result = 0;
     for (int i = 0; i < carts.length; i++) {
       if (carts[i].status) {
-        result += products[carts[i].idsp].price * carts[i].sl;
+        result += carts[i].price * carts[i].quantity;
       }
     }
     return result;
@@ -87,15 +102,22 @@ class _CartSceenState extends State<CartSceen> {
         ListTile(
           leading: Checkbox(
               value: isChecked,
-              onChanged: (bool? value) {
+              onChanged: (bool value) {
                 setState(() {
                   isChecked = value;
-                  checkAll(isChecked!);
+                  checkAll(isChecked);
                 });
               }),
           title: Text('Tất cả (${carts.length} sản phẩm)'),
           trailing: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              NetworkRequest.deleteCart();
+              NetworkRequest.fetchCart().then((data) {
+                setState(() {
+                  carts = data;
+                });
+              });
+            },
             icon: const Icon(Icons.delete),
           ),
         ),
@@ -128,64 +150,62 @@ class _CartSceenState extends State<CartSceen> {
           header(),
           Expanded(
             flex: 1,
-            child: Container(
-              child: ListView.builder(
-                itemCount: carts.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Row(
-                    children: [
-                      Column(
-                        children: [
-                          Checkbox(
-                              value: carts[index].status,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  carts[index].status = value!;
-                                });
-                              }),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 88,
-                        child: AspectRatio(
-                          aspectRatio: 0.88,
-                          child: Container(
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFF5F6F9),
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child:
-                                Image.asset(products[carts[index].idsp].image),
+            child: ListView.builder(
+              itemCount: carts.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Row(
+                  children: [
+                    Column(
+                      children: [
+                        Checkbox(
+                            value: carts[index].status,
+                            onChanged: (bool value) {
+                              setState(() {
+                                carts[index].status = value;
+                                NetworkRequest.changeStatus(carts[index].id);
+                              });
+                            }),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 88,
+                      child: AspectRatio(
+                        aspectRatio: 0.88,
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFF5F6F9),
+                            borderRadius: BorderRadius.circular(15),
                           ),
+                          child: Image.asset(carts[index].image),
                         ),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            products[carts[index].idsp].title,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          carts[index].title,
+                          style: const TextStyle(
+                              color: Colors.black, fontSize: 16),
+                          maxLines: 3,
+                        ),
+                        const SizedBox(height: 10),
+                        Text.rich(
+                          TextSpan(
+                            text: '${carts[index].price} VND',
                             style: const TextStyle(
-                                color: Colors.black, fontSize: 16),
-                            maxLines: 3,
-                          ),
-                          const SizedBox(height: 10),
-                          Text.rich(
-                            TextSpan(
-                              text: '${products[carts[index].idsp].price} VND',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w600,
-                                color: Colors.red,
-                              ),
+                              fontWeight: FontWeight.w600,
+                              color: Colors.red,
                             ),
                           ),
-                          _CartCounter(index),
-                        ],
-                      ),
-                    ],
-                  );
-                },
-              ),
+                        ),
+                        _CartCounter(index),
+                      ],
+                    ),
+                  ],
+                );
+              },
             ),
           ),
         ],
@@ -200,9 +220,9 @@ class _CartSceenState extends State<CartSceen> {
         IconButton(
           icon: const Icon(Icons.remove),
           onPressed: () {
-            if (carts[index].sl > 1) {
+            if (carts[index].quantity > 1) {
               setState(() {
-                carts[index].sl--;
+                carts[index].quantity--;
               });
             }
           },
@@ -210,10 +230,10 @@ class _CartSceenState extends State<CartSceen> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding / 2),
           child: Text(
-            carts[index].sl.toString().padLeft(2, "0"),
+            carts[index].quantity.toString().padLeft(2, "0"),
             style: Theme.of(context)
                 .textTheme
-                .headline6!
+                .headline6
                 .copyWith(fontWeight: FontWeight.bold),
           ),
         ),
@@ -221,7 +241,7 @@ class _CartSceenState extends State<CartSceen> {
           icon: const Icon(Icons.add),
           onPressed: () {
             setState(() {
-              carts[index].sl++;
+              carts[index].quantity++;
             });
           },
         ),
@@ -255,11 +275,22 @@ class _CartSceenState extends State<CartSceen> {
         ),
         trailing: ElevatedButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const XacnhandonhangSceen()),
-            );
+            if (soLuongSPMua == 0) {
+              showDialog(
+                context: context,
+                builder: (context) => const AlertDialog(
+                  title: Icon(Icons.warning),
+                  content: Text('Bạn chưa chọn sản phẩm để mua'),
+                ),
+              );
+            } else {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => XacnhandonhangSceen(),
+                ),
+              );
+            }
           },
           style: ElevatedButton.styleFrom(
             primary: Colors.red,

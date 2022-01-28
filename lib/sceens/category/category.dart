@@ -6,7 +6,7 @@ import '../../../constanst.dart';
 import '../../components/search.dart';
 
 class CategorySceen extends StatefulWidget {
-  const CategorySceen({Key? key}) : super(key: key);
+  const CategorySceen({Key key}) : super(key: key);
   @override
   State<CategorySceen> createState() => _CategorySceenState();
 }

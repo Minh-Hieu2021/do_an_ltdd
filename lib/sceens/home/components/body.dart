@@ -1,28 +1,46 @@
 import 'dart:convert';
 
+import 'package:do_an_ltdd/models/product_api.dart';
+import 'package:do_an_ltdd/network/network_request.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:do_an_ltdd/components/item_card.dart';
 import 'categoryhome.dart';
-import 'package:do_an_ltdd/models/product_model.dart';
 import 'package:do_an_ltdd/models/img_model.dart';
 import 'package:do_an_ltdd/components/search.dart';
 import 'package:do_an_ltdd/sceens/cart/cart.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:http/http.dart' as http;
 
-class BodyHome extends StatelessWidget {
-  const BodyHome({Key? key, required this.productss}) : super(key: key);
-  final List<Product> productss;
+class BodyHome extends StatefulWidget {
+  BodyHome({Key key}) : super(key: key);
+
+  @override
+  State<BodyHome> createState() => _BodyHomeState();
+}
+
+class _BodyHomeState extends State<BodyHome> {
+  List<Products> productss = [];
+
+  @override
+  void initState() {
+    super.initState();
+    NetworkRequest.fetchProduct().then((data) {
+      setState(() {
+        productss = data;
+      });
+    });
+  }
+
   double demSoHang() {
-    double dem = 0;
-    for (int i = 0; i <= productss.length; i++) {
+    double result = 0;
+    for (int i = 1; i <= productss.length; i++) {
       if (i % 2 != 0) {
-        dem += 0.44;
+        result += 310;
       }
     }
-    return dem;
+    return result;
   }
 
   @override
@@ -93,7 +111,7 @@ class BodyHome extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: size.height * demSoHang(),
+            height: demSoHang(),
             child: GridView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: productss.length,
@@ -117,17 +135,17 @@ class BodyHome extends StatelessWidget {
                     )),
           ),
           const Text(
-            "Sản phẩm bán",
+            "Sản phẩm gợi ý",
             style: TextStyle(
               fontSize: 20,
               color: Colors.white,
             ),
           ),
           SizedBox(
-            height: size.height * demSoHang(),
+            height: demSoHang(),
             child: GridView.builder(
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: products.length,
+                itemCount: productss.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 0.7,
@@ -135,7 +153,7 @@ class BodyHome extends StatelessWidget {
                 itemBuilder: (context, index) => Container(
                       margin: const EdgeInsets.all(10),
                       child: ItemCard(
-                        product: products[index],
+                        product: productss[index],
                         press: () {
                           // Navigator.push(
                           //     context,

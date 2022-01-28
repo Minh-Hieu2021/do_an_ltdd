@@ -1,4 +1,3 @@
-import 'package:do_an_ltdd/models/productdetail_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:do_an_ltdd/models/product_model.dart';
@@ -9,11 +8,10 @@ import 'package:do_an_ltdd/constanst.dart';
 class DetailsScreen extends StatefulWidget {
   final Product product;
   final dynamic Function() press;
-
   const DetailsScreen({
-    Key? key,
-    required this.product,
-    required this.press,
+    Key key,
+    this.product,
+    this.press,
   }) : super(key: key);
 
   @override
