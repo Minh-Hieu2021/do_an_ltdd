@@ -22,109 +22,113 @@ class BodyProflie extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          const SizedBox(height: 40),
-          const Search(),
-          const SizedBox(height: 20),
-          Container(
-            height: 125,
-            color: kBackgroundColor,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(
-                  children: [
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const Text(
-                      'Sắp xếp theo',
-                      style: TextStyle(fontSize: 16, color: Colors.white),
-                    ),
-                    const SizedBox(
-                      height: 29,
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white, // background (button) color
-                        onPrimary: Colors.black, // foreground (text) color
-                      ),
-                      onPressed: () {},
-                      child: Row(
-                        children: const [
-                          Text("  Bán chạy  "),
-                        ],
-                      ),
-                    ),
-                  ],
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: kBackgroundColor,
+        centerTitle: true,
+        title: const Text('Profile'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.shopping_cart),
+            color: Colors.white,
+            onPressed: () {},
+          ),
+          const SizedBox(width: 10),
+        ],
+      ),
+      body: Column(
+        children: [
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              const SizedBox(
+                width: 20,
+              ),
+              ClipOval(
+                child: SizedBox.fromSize(
+                  size: Size.fromRadius(50), // Image radius
+                  child:
+                      Image.asset('assets/images/sp1.png', fit: BoxFit.cover),
                 ),
-                Column(
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white, // background (button) color
-                        onPrimary: Colors.black, // foreground (text) color
-                      ),
-                      onPressed: () {},
-                      child: Row(
-                        children: const [
-                          Text("Giá tăng dần"),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white, // background (button) color
-                        onPrimary: Colors.black, // foreground (text) color
-                      ),
-                      onPressed: () {},
-                      child: Row(
-                        children: const [
-                          Text("     Mới về     "),
-                        ],
-                      ),
-                    ),
-                  ],
+              ),
+              const SizedBox(
+                width: 20,
+              ),
+              const Text(
+                'Huỳnh Minh Hiếu',
+                style: TextStyle(
+                  fontSize: 20,
                 ),
-                Column(
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white, // background (button) color
-                        onPrimary: Colors.black, // foreground (text) color
-                      ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Row(
+            children: [
+              const SizedBox(
+                width: 20,
+              ),
+              Column(
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.card_giftcard,
+                      size: 35,
+                    ),
+                  ),
+                  const Text('Đang xử lí'),
+                ],
+              ),
+              const SizedBox(
+                width: 45,
+              ),
+              Column(
+                children: [
+                  IconButton(
                       onPressed: () {},
-                      child: Row(
-                        children: const [
-                          Text("Giá giảm dần"),
-                        ],
-                      ),
+                      icon: const Icon(
+                        Icons.local_shipping_rounded,
+                        size: 35,
+                      )),
+                  const Text('Đang giao'),
+                ],
+              ),
+              const SizedBox(
+                width: 45,
+              ),
+              Column(
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.inventory_outlined,
+                      size: 35,
                     ),
-                    const SizedBox(
-                      height: 10,
+                  ),
+                  const Text('Đã giao'),
+                ],
+              ),
+              const SizedBox(
+                width: 45,
+              ),
+              Column(
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.cancel_presentation,
+                      size: 35,
                     ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white, // background (button) color
-                        onPrimary: Colors.black, // foreground (text) color
-                      ),
-                      onPressed: () {},
-                      child: Row(
-                        children: const [
-                          Text("Khuyến mãi  "),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                  const Text('Đã hủy'),
+                ],
+              ),
+            ],
           ),
         ],
       ),

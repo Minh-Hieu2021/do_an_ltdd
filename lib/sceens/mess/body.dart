@@ -1,42 +1,16 @@
-import 'package:do_an_ltdd/models/product_api.dart';
-import 'package:do_an_ltdd/network/network_request.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:do_an_ltdd/components/item_card.dart';
 import 'package:do_an_ltdd/constanst.dart';
 import 'package:do_an_ltdd/components/search.dart';
 
-class BodyCategory extends StatefulWidget {
-  const BodyCategory({Key key}) : super(key: key);
-
+class BodyMess extends StatefulWidget {
+  const BodyMess({Key key}) : super(key: key);
   @override
-  State<BodyCategory> createState() => _BodyCategoryState();
+  State<BodyMess> createState() => _BodyMessState();
 }
 
-class _BodyCategoryState extends State<BodyCategory> {
-  double demSoHang() {
-    double result = 0;
-    for (int i = 1; i <= productss.length; i++) {
-      if (i % 2 != 0) {
-        result += 310;
-      }
-    }
-    return result;
-  }
-
-  List<Products> productss = [];
-
-  @override
-  void initState() {
-    super.initState();
-    NetworkRequest.fetchProduct().then((data) {
-      setState(() {
-        productss = data;
-      });
-    });
-  }
-
+class _BodyMessState extends State<BodyMess> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -143,30 +117,6 @@ class _BodyCategoryState extends State<BodyCategory> {
                 ),
               ],
             ),
-          ),
-          Container(
-            height: demSoHang(),
-            child: GridView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: productss.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.7,
-                ),
-                itemBuilder: (context, index) => Container(
-                      margin: const EdgeInsets.all(10),
-                      child: ItemCard(
-                        product: productss[index],
-                        press: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //       builder: (context) =>
-                          //           DetailsScreen(product: products[index]),
-                          //     ));
-                        },
-                      ),
-                    )),
           ),
         ],
       ),

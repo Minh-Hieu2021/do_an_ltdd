@@ -1,5 +1,5 @@
 import 'package:do_an_ltdd/sceens/home/components/body.dart';
-import 'package:do_an_ltdd/sceens/category/body.dart';
+import 'package:do_an_ltdd/sceens/mess/body.dart';
 import 'package:do_an_ltdd/sceens/profile/body.dart';
 import 'package:flutter/material.dart';
 import 'package:do_an_ltdd/constanst.dart';
@@ -16,7 +16,7 @@ class _HomeSceenState extends State<HomeSceen> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _pages = <Widget>[
     BodyHome(),
-    BodyCategory(),
+    BodyMess(),
     BodyProflie(),
   ];
 

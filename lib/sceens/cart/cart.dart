@@ -177,7 +177,8 @@ class _CartSceenState extends State<CartSceen> {
                             color: const Color(0xFFF5F6F9),
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          child: Image.asset(carts[index].image),
+                          child: Image.network(
+                              'http://10.0.2.2:8000/' + carts[index].image),
                         ),
                       ),
                     ),
@@ -223,6 +224,7 @@ class _CartSceenState extends State<CartSceen> {
             if (carts[index].quantity > 1) {
               setState(() {
                 carts[index].quantity--;
+                NetworkRequest.downQuantity(carts[index].id);
               });
             }
           },
@@ -242,6 +244,7 @@ class _CartSceenState extends State<CartSceen> {
           onPressed: () {
             setState(() {
               carts[index].quantity++;
+              NetworkRequest.upQuantity(carts[index].id);
             });
           },
         ),

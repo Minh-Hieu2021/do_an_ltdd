@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:do_an_ltdd/models/product_model.dart';
-import 'package:do_an_ltdd/sceens/product/seereview_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:do_an_ltdd/constanst.dart';
 
@@ -52,37 +51,37 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 ),
               ),
             ),
-            Row(children: <Widget>[
+            Row(children: const <Widget>[
               // 5sao
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(left: 10),
                 child: Icon(
                   Icons.star,
                   color: (Colors.yellow),
                 ),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(0),
                 child: Icon(
                   Icons.star,
                   color: (Colors.yellow),
                 ),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(0),
                 child: Icon(
                   Icons.star,
                   color: (Colors.yellow),
                 ),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(0),
                 child: Icon(
                   Icons.star,
                   color: (Colors.yellow),
                 ),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(0),
                 child: Icon(
                   Icons.star,
@@ -91,10 +90,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
               ),
               Padding(
                 //Đã bán
-                padding: const EdgeInsets.all(10),
+                padding: EdgeInsets.all(10),
                 child: Text(
                   "Đã bán 120",
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: kTextColor,
                   ),
                 ),
@@ -111,11 +110,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
+              const Padding(
+                padding: EdgeInsets.only(left: 10),
                 child: Text(
                   "30.000.000",
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: kTextColor,
                     decoration: TextDecoration.lineThrough,
                   ),
@@ -173,11 +172,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 10),
                         child: Text(
                           "30.000.000",
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: kTextColor,
                             decoration: TextDecoration.lineThrough,
                           ),
@@ -217,11 +216,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 10),
                         child: Text(
                           "30.000.000",
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: kTextColor,
                             decoration: TextDecoration.lineThrough,
                           ),
@@ -261,11 +260,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 10),
                         child: Text(
                           "30.000.000",
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: kTextColor,
                             decoration: TextDecoration.lineThrough,
                           ),
@@ -364,12 +363,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   child: Column(
                     // Thông tin chi tiết được lấy lên từ products
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
+                    children: const <Widget>[
                       Padding(
-                        padding: const EdgeInsets.all(5),
+                        padding: EdgeInsets.all(5),
                         child: Text(
                           "Intel® Core™ i5-11400H Processor 2.7 GHz",
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: kTextColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 15,
@@ -377,10 +376,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(5),
+                        padding: EdgeInsets.all(5),
                         child: Text(
                           "8GB DDR4 3200MHz",
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: kTextColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 15,
@@ -388,10 +387,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(5),
+                        padding: EdgeInsets.all(5),
                         child: Text(
                           "512GB SSD M.2 PCIE G3X2, 1x slot M.2",
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: kTextColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 15,
@@ -399,10 +398,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(5),
+                        padding: EdgeInsets.all(5),
                         child: Text(
                           "NVIDIA® GeForce RTX™ 3050 Laptop GPU + Intel® UHD Graphics",
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: kTextColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 15,
@@ -410,10 +409,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(5),
+                        padding: EdgeInsets.all(5),
                         child: Text(
                           "15.6-inch FHD",
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: kTextColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 15,
@@ -424,18 +423,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   ),
                 ),
               ],
-            ),
-            TextButton(
-              onPressed: () {},
-              //  => Navigator.push(
-              //   context ,MaterialPageRoute(
-              //     builder: (context) => ChildDetailScreen(),
-              //   ),
-              // ),
-              child: const Text(
-                "Xem tất cả >",
-                style: TextStyle(fontSize: 20, color: Colors.blue),
-              ),
             ),
             const Divider(
               height: 20,
@@ -554,11 +541,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
             Row(children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(10),
-                child: Image.asset("assets/images/spm1.png"),
+                child: Image.asset("assets/images/sp1.png"),
               ),
               Padding(
                 padding: const EdgeInsets.all(10),
-                child: Image.asset("assets/images/spm1.png"),
+                child: Image.asset("assets/images/sp1.png"),
               ),
             ]),
             Row(children: const <Widget>[
@@ -656,22 +643,21 @@ class _DetailsScreenState extends State<DetailsScreen> {
       backgroundColor: const Color(0xFF273c75),
       elevation: 0,
       leading: IconButton(
-        icon: SvgPicture.asset('assets/icons/back.svg', color: Colors.black),
+        icon: const Icon(Icons.arrow_back),
+        color: Colors.white,
         onPressed: () {},
       ),
       actions: <Widget>[
         IconButton(
           icon: SvgPicture.asset(
             'assets/icons/search.svg',
-            color: Colors.black,
+            color: Colors.white,
           ),
           onPressed: () {},
         ),
         IconButton(
-          icon: SvgPicture.asset(
-            'assets/icons/cart.svg',
-            color: Colors.black,
-          ),
+          icon: Icon(Icons.shopping_cart),
+          color: Colors.white,
           onPressed: () {},
         ),
         const SizedBox(width: 10),

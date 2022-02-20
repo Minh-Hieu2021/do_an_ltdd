@@ -1,11 +1,11 @@
-import 'package:do_an_ltdd/models/product_api.dart';
+import 'package:do_an_ltdd/models/category_api.dart';
 import 'package:flutter/material.dart';
 import 'package:do_an_ltdd/constanst.dart';
 
-class ItemCard extends StatelessWidget {
-  final Products product;
+class ItemCardc extends StatelessWidget {
+  final Categorys product;
   final Function() press;
-  const ItemCard({
+  const ItemCardc({
     Key key,
     this.product,
     this.press,
@@ -44,15 +44,14 @@ class ItemCard extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: Container(
-              padding: const EdgeInsets.all(4),
+              padding: const EdgeInsets.all(40),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(5),
               ),
               child: Hero(
                 tag: "${product.id}",
-                // child: Image.network('https://picsum.photos/250?image=9'),
-                child: Image.network('http://10.0.2.2:8000/' + product.image),
+                child: Image.network('http://10.0.2.2:8000/${product.image}'),
               ),
             ),
           ),

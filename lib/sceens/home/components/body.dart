@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:do_an_ltdd/models/product_api.dart';
 import 'package:do_an_ltdd/network/network_request.dart';
+import 'package:do_an_ltdd/sceens/product/detailproduct.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -21,21 +22,21 @@ class BodyHome extends StatefulWidget {
 }
 
 class _BodyHomeState extends State<BodyHome> {
-  List<Products> productss = [];
+  List<Products> products = [];
 
   @override
   void initState() {
     super.initState();
     NetworkRequest.fetchProduct().then((data) {
       setState(() {
-        productss = data;
+        products = data;
       });
     });
   }
 
   double demSoHang() {
     double result = 0;
-    for (int i = 1; i <= productss.length; i++) {
+    for (int i = 1; i <= products.length; i++) {
       if (i % 2 != 0) {
         result += 310;
       }
@@ -114,7 +115,7 @@ class _BodyHomeState extends State<BodyHome> {
             height: demSoHang(),
             child: GridView.builder(
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: productss.length,
+                itemCount: products.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 0.7,
@@ -122,14 +123,13 @@ class _BodyHomeState extends State<BodyHome> {
                 itemBuilder: (context, index) => Container(
                       margin: const EdgeInsets.all(10),
                       child: ItemCard(
-                        product: productss[index],
+                        product: products[index],
                         press: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //       builder: (context) =>
-                          //           DetailsScreen(product: products[index]),
-                          //     ));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailsScreen(),
+                              ));
                         },
                       ),
                     )),
@@ -145,7 +145,7 @@ class _BodyHomeState extends State<BodyHome> {
             height: demSoHang(),
             child: GridView.builder(
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: productss.length,
+                itemCount: products.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 0.7,
@@ -153,7 +153,7 @@ class _BodyHomeState extends State<BodyHome> {
                 itemBuilder: (context, index) => Container(
                       margin: const EdgeInsets.all(10),
                       child: ItemCard(
-                        product: productss[index],
+                        product: products[index],
                         press: () {
                           // Navigator.push(
                           //     context,

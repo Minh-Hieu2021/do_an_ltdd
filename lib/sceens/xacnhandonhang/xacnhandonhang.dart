@@ -324,11 +324,7 @@ class _XacnhandonhangSceenState extends State<XacnhandonhangSceen> {
           style: const TextStyle(color: Colors.red),
         ),
         trailing: ElevatedButton(
-          onPressed: () {
-            var now = DateTime.now();
-            print(
-                '${now.day} Th ${now.month} - ${now.day + 3} Th ${now.month}');
-          },
+          onPressed: () {},
           style: ElevatedButton.styleFrom(
             primary: Colors.red,
             onPrimary: Colors.white,

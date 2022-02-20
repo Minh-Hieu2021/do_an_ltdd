@@ -7,7 +7,7 @@ class Categoryhome extends StatelessWidget {
   List<String> tabControl = [
     'Asus',
     'Acer',
-    'Maccbook',
+    'Macbook',
     'MSI',
   ];
   @override
@@ -26,7 +26,10 @@ class Categoryhome extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (BuildContext context) => const CategorySceen(),
+                builder: (BuildContext context) => CategorySceen(),
+                settings: RouteSettings(
+                  arguments: tabControl[index],
+                ),
               ),
             );
           },
