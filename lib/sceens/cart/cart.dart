@@ -1,3 +1,4 @@
+import 'package:do_an_ltdd/models/account_model.dart';
 import 'package:do_an_ltdd/network/network_request.dart';
 import 'package:flutter/material.dart';
 // import 'package:do_an_ltdd/models/product_api.dart';
@@ -20,9 +21,10 @@ class _CartSceenState extends State<CartSceen> {
   @override
   void initState() {
     super.initState();
-    NetworkRequest.fetchCart().then((data) {
+    NetworkRequest.fetchCart(AccountStatic.id).then((data) {
       setState(() {
         carts = data;
+        print(data);
       });
     });
   }
@@ -84,16 +86,16 @@ class _CartSceenState extends State<CartSceen> {
           color: Colors.grey[300],
         ),
         Row(
-          children: const [
-            Icon(Icons.fmd_good_rounded),
-            Text('Nguyễn Văn Đức | 0986616345', style: TextStyle(fontSize: 20))
+          children: [
+            const Icon(Icons.fmd_good_rounded),
+            Text(AccountStatic.fullName + ' | ' + AccountStatic.phone,
+                style: const TextStyle(fontSize: 20))
           ],
         ),
-        const Padding(
-          padding: EdgeInsets.all(15),
-          child: Text(
-              'MC6H+73 Mỹ Phong, Mỹ Tho, Tiền Giang, Xã Mỹ Phong,Thành phố Mỹ Tho, Tiền Giang',
-              style: TextStyle(fontSize: 15)),
+        Padding(
+          padding: const EdgeInsets.all(15),
+          child:
+              Text(AccountStatic.address, style: const TextStyle(fontSize: 15)),
         ),
         Container(
           height: 8,
@@ -112,7 +114,7 @@ class _CartSceenState extends State<CartSceen> {
           trailing: IconButton(
             onPressed: () {
               NetworkRequest.deleteCart();
-              NetworkRequest.fetchCart().then((data) {
+              NetworkRequest.fetchCart(AccountStatic.id).then((data) {
                 setState(() {
                   carts = data;
                 });

@@ -135,7 +135,7 @@ class _BodyHomeState extends State<BodyHome> {
                     )),
           ),
           const Text(
-            "Sản phẩm gợi ý",
+            "Sản phẩm bán chạy",
             style: TextStyle(
               fontSize: 20,
               color: Colors.white,

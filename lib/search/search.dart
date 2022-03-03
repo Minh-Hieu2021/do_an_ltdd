@@ -1,4 +1,5 @@
 import 'package:do_an_ltdd/components/item_card_category.dart';
+import 'package:do_an_ltdd/sceens/home/home.dart';
 import 'package:flutter/material.dart';
 import '../../../constanst.dart';
 import 'package:do_an_ltdd/network/network_request.dart';
@@ -8,13 +9,13 @@ import 'package:do_an_ltdd/constanst.dart';
 import 'package:do_an_ltdd/components/search.dart';
 import 'package:do_an_ltdd/models/category_api.dart';
 
-class CategorySceen extends StatefulWidget {
-  const CategorySceen({Key key}) : super(key: key);
+class SearchSceen extends StatefulWidget {
+  const SearchSceen({Key key}) : super(key: key);
   @override
-  State<CategorySceen> createState() => _CategorySceenState();
+  State<SearchSceen> createState() => _SearchSceenState();
 }
 
-class _CategorySceenState extends State<CategorySceen> {
+class _SearchSceenState extends State<SearchSceen> {
   double demSoHang() {
     double result = 0;
     for (int i = 1; i <= categorys.length; i++) {
@@ -26,8 +27,8 @@ class _CategorySceenState extends State<CategorySceen> {
   }
 
   List<Categorys> categorys = [];
-  void loadsp(String args) {
-    NetworkRequest.fetchCategory(args).then((data) {
+  void loadsp(String args) async {
+    await NetworkRequest.fetchSearch(args).then((data) {
       setState(() {
         categorys = data;
       });
@@ -43,7 +44,11 @@ class _CategorySceenState extends State<CategorySceen> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HomeSceen(),
+                ));
           },
           icon: Icon(Icons.arrow_back),
         ),

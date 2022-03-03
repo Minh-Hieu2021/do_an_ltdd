@@ -1,9 +1,16 @@
+import 'package:do_an_ltdd/search/search.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter/widgets.dart';
 
-class Search extends StatelessWidget {
+class Search extends StatefulWidget {
   const Search({Key key}) : super(key: key);
 
+  @override
+  State<Search> createState() => _SearchState();
+}
+
+class _SearchState extends State<Search> {
+  TextEditingController searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,18 +21,13 @@ class Search extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
-        // boxShadow: const [
-        //   BoxShadow(
-        //     offset: Offset(0, 1000), // khoảng cách
-        //     blurRadius: 0.1, // độ mờ
-        //   ),
-        // ],
       ),
       child: Row(
         children: [
-          const Expanded(
+          Expanded(
             child: TextField(
-              decoration: InputDecoration(
+              controller: searchController,
+              decoration: const InputDecoration(
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 border: OutlineInputBorder(),
@@ -35,10 +37,18 @@ class Search extends StatelessWidget {
               ),
             ),
           ),
-          SvgPicture.asset(
-            "assets/icons/search.svg",
-            color: Colors.black,
-          ),
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SearchSceen(),
+                      settings: RouteSettings(
+                        arguments: searchController.text,
+                      ),
+                    ));
+              },
+              icon: const Icon(Icons.search))
         ],
       ),
     );

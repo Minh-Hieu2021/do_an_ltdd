@@ -1,14 +1,27 @@
+import 'package:do_an_ltdd/models/account_model.dart';
+import 'package:do_an_ltdd/sceens/account_information/account_information.dart';
+import 'package:do_an_ltdd/sceens/cart/cart.dart';
+import 'package:do_an_ltdd/sceens/login/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:do_an_ltdd/components/item_card.dart';
 import 'package:do_an_ltdd/constanst.dart';
 import 'package:do_an_ltdd/models/product_model.dart';
-import 'package:do_an_ltdd/models/img_model.dart';
-import 'package:do_an_ltdd/components/search.dart';
 
-class BodyProflie extends StatelessWidget {
-  const BodyProflie({Key key}) : super(key: key);
+class BodyProflie extends StatefulWidget {
+  BodyProflie({Key key}) : super(key: key);
+
+  @override
+  State<BodyProflie> createState() => _BodyProflieState();
+}
+
+class _BodyProflieState extends State<BodyProflie> {
+  String ten = '';
+
+  void layTen() {
+    ten = AccountStatic.fullName;
+  }
+
   double demSoHang() {
     double dem = 0;
     for (int i = 0; i <= products.length; i++) {
@@ -21,17 +34,24 @@ class BodyProflie extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    layTen();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        leading: Text(''),
         backgroundColor: kBackgroundColor,
         centerTitle: true,
         title: const Text('Profile'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.shopping_cart),
+            icon: const Icon(Icons.shopping_cart),
             color: Colors.white,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const CartSceen()),
+              );
+            },
           ),
           const SizedBox(width: 10),
         ],
@@ -56,11 +76,27 @@ class BodyProflie extends StatelessWidget {
               const SizedBox(
                 width: 20,
               ),
-              const Text(
-                'Huỳnh Minh Hiếu',
-                style: TextStyle(
+              Text(
+                ten,
+                style: const TextStyle(
                   fontSize: 20,
                 ),
+              ),
+              IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Account_InformationScreen()));
+                },
+                icon: const Icon(Icons.edit),
+              ),
+              IconButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => logInScreen()));
+                },
+                icon: const Icon(Icons.logout),
               ),
             ],
           ),
